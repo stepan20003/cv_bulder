@@ -1,12 +1,14 @@
+import React from 'react';
 import { Plus, Trash2 } from 'lucide-react';
 
-const EducationForm = ({ data = [], onChange }) => {
+const EducationForm = ({ data, onChange }) => {
   const addEducation = () => {
     onChange([...data, { school: '', degree: '', year: '' }]);
   };
 
   const removeEducation = (index) => {
-    onChange(data.filter((_, i) => i !== index));
+    const newData = data.filter((_, i) => i !== index);
+    onChange(newData);
   };
 
   const handleChange = (index, field, value) => {
@@ -16,48 +18,59 @@ const EducationForm = ({ data = [], onChange }) => {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <h3 className="text-lg font-medium">Education</h3>
-        <button
-          onClick={addEducation}
-          type="button"
-          className="flex items-center text-sm text-blue-600 hover:text-blue-800"
-        >
-          <Plus size={16} className="mr-1" /> Add Education
-        </button>
-      </div>
-
+    <div className="space-y-6">
       {data.map((edu, index) => (
-        <div key={index} className="p-4 border border-gray-200 rounded-lg relative space-y-3">
+        <div key={index} className="p-4 border rounded-lg space-y-4 relative bg-gray-50">
           <button
             onClick={() => removeEducation(index)}
-            className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+            className="absolute top-4 right-4 text-gray-400 hover:text-red-600"
           >
-            <Trash2 size={16} />
+            <Trash2 className="h-5 w-5" />
           </button>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">School / University</label>
+              <input
+                type="text"
+                value={edu.school}
+                onChange={(e) => handleChange(index, 'school', e.target.value)}
+                placeholder="MIT"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Degree</label>
+              <input
+                type="text"
+                value={edu.degree}
+                onChange={(e) => handleChange(index, 'degree', e.target.value)}
+                placeholder="B.S. Computer Science"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Year</label>
             <input
-              placeholder="School/University"
-              value={edu.school}
-              onChange={(e) => handleChange(index, 'school', e.target.value)}
-              className="border border-gray-300 rounded p-2"
-            />
-            <input
-              placeholder="Degree"
-              value={edu.degree}
-              onChange={(e) => handleChange(index, 'degree', e.target.value)}
-              className="border border-gray-300 rounded p-2"
+              type="text"
+              value={edu.year}
+              onChange={(e) => handleChange(index, 'year', e.target.value)}
+              placeholder="2016 - 2020"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
           </div>
-          <input
-            placeholder="Year"
-            value={edu.year}
-            onChange={(e) => handleChange(index, 'year', e.target.value)}
-            className="w-full border border-gray-300 rounded p-2"
-          />
         </div>
       ))}
+
+      <button
+        onClick={addEducation}
+        className="w-full flex items-center justify-center space-x-2 py-3 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-blue-500 hover:text-blue-500 transition"
+      >
+        <Plus className="h-5 w-5" />
+        <span>Add Education</span>
+      </button>
     </div>
   );
 };

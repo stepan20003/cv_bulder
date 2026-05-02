@@ -1,60 +1,57 @@
+import React from 'react';
+
 const ClassicTemplate = ({ data }) => {
   const { personal_info = {}, experience = [], education = [], skills = [], projects = [] } = data;
 
   return (
-    <div className="bg-white shadow-lg p-10 max-w-2xl mx-auto min-h-[842px] text-black font-serif">
-      <header className="text-center mb-8">
-        <h1 className="text-3xl font-bold border-b-2 border-black pb-2 inline-block mb-2">{personal_info.fullName || 'YOUR NAME'}</h1>
-        <p className="text-lg italic text-gray-700">{personal_info.profession || 'Profession'}</p>
-        <div className="text-sm mt-2">
-          {[personal_info.email, personal_info.phone, personal_info.linkedin, personal_info.github]
-            .filter(Boolean)
-            .join(' • ')}
+    <div className="bg-white shadow-lg w-[210mm] min-h-[297mm] p-16 mx-auto text-black font-serif">
+      <header className="text-center mb-10 border-b border-black pb-6">
+        <h1 className="text-3xl font-bold uppercase tracking-widest mb-2">{personal_info.fullName || 'Your Name'}</h1>
+        <p className="italic text-lg mb-4">{personal_info.profession}</p>
+        <div className="text-sm space-x-3">
+          <span>{personal_info.email}</span>
+          <span>•</span>
+          <span>{personal_info.phone}</span>
+          <span>•</span>
+          <span>{personal_info.linkedin}</span>
         </div>
       </header>
 
-      <section className="mb-6">
-        <h2 className="text-lg font-bold border-b border-black mb-3 uppercase tracking-widest">Experience</h2>
-        {experience.map((exp, idx) => (
-          <div key={idx} className="mb-4">
-            <div className="flex justify-between font-bold">
-              <span>{exp.company}</span>
-              <span>{exp.duration}</span>
-            </div>
-            <div className="italic mb-1">{exp.role}</div>
-            <p className="text-sm leading-relaxed">{exp.description}</p>
-          </div>
-        ))}
-      </section>
-
-      <section className="mb-6">
-        <h2 className="text-lg font-bold border-b border-black mb-3 uppercase tracking-widest">Education</h2>
-        {education.map((edu, idx) => (
-          <div key={idx} className="mb-3">
-            <div className="flex justify-between font-bold">
-              <span>{edu.school}</span>
-              <span>{edu.year}</span>
-            </div>
-            <div className="italic text-sm">{edu.degree}</div>
-          </div>
-        ))}
-      </section>
-
-      <section className="mb-6">
-        <h2 className="text-lg font-bold border-b border-black mb-3 uppercase tracking-widest">Skills</h2>
-        <p className="text-sm italic">{skills.join(', ')}</p>
-      </section>
-
-      {projects.length > 0 && (
-        <section>
-          <h2 className="text-lg font-bold border-b border-black mb-3 uppercase tracking-widest">Projects</h2>
-          {projects.map((proj, idx) => (
-            <div key={idx} className="mb-3">
-              <span className="font-bold">{proj.name}</span>: <span className="text-sm">{proj.description}</span>
+      <section className="mb-8">
+        <h2 className="text-sm font-bold uppercase border-b border-black mb-4 tracking-tighter">Experience</h2>
+        <div className="space-y-6">
+          {experience.map((exp, i) => (
+            <div key={i}>
+              <div className="flex justify-between font-bold italic">
+                <span>{exp.company}</span>
+                <span>{exp.duration}</span>
+              </div>
+              <div className="italic mb-2">{exp.role}</div>
+              <p className="text-sm leading-relaxed">{exp.description}</p>
             </div>
           ))}
-        </section>
-      )}
+        </div>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-sm font-bold uppercase border-b border-black mb-4 tracking-tighter">Education</h2>
+        <div className="space-y-4">
+          {education.map((edu, i) => (
+            <div key={i}>
+              <div className="flex justify-between font-bold">
+                <span>{edu.school}</span>
+                <span>{edu.year}</span>
+              </div>
+              <p className="italic text-sm">{edu.degree}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-sm font-bold uppercase border-b border-black mb-4 tracking-tighter">Skills</h2>
+        <p className="text-sm">{skills.join(', ')}</p>
+      </section>
     </div>
   );
 };

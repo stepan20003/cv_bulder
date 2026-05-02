@@ -1,3 +1,6 @@
+import React from 'react';
+import { Mail, Phone, User } from 'lucide-react';
+
 const PersonalInfoForm = ({ data, onChange }) => {
   const handleChange = (e) => {
     onChange({ ...data, [e.target.name]: e.target.value });
@@ -5,8 +8,7 @@ const PersonalInfoForm = ({ data, onChange }) => {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-medium">Personal Information</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700">Full Name</label>
           <input
@@ -14,21 +16,24 @@ const PersonalInfoForm = ({ data, onChange }) => {
             name="fullName"
             value={data.fullName || ''}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             placeholder="John Doe"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Profession</label>
+          <label className="block text-sm font-medium text-gray-700">Profession / Title</label>
           <input
             type="text"
             name="profession"
             value={data.profession || ''}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             placeholder="Full Stack Developer"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
         </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700">Email</label>
           <input
@@ -36,8 +41,8 @@ const PersonalInfoForm = ({ data, onChange }) => {
             name="email"
             value={data.email || ''}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             placeholder="john@example.com"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
         </div>
         <div>
@@ -47,30 +52,33 @@ const PersonalInfoForm = ({ data, onChange }) => {
             name="phone"
             value={data.phone || ''}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             placeholder="+1 234 567 890"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
         </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700">LinkedIn</label>
+          <label className="block text-sm font-medium text-gray-700">LinkedIn URL</label>
           <input
             type="text"
             name="linkedin"
             value={data.linkedin || ''}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             placeholder="linkedin.com/in/johndoe"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">GitHub</label>
+          <label className="block text-sm font-medium text-gray-700">GitHub URL</label>
           <input
             type="text"
             name="github"
             value={data.github || ''}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             placeholder="github.com/johndoe"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
           />
         </div>
       </div>

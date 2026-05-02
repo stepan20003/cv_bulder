@@ -1,56 +1,49 @@
+import React from 'react';
+
 const MinimalTemplate = ({ data }) => {
   const { personal_info = {}, experience = [], education = [], skills = [], projects = [] } = data;
 
   return (
-    <div className="bg-white shadow-lg p-12 max-w-2xl mx-auto min-h-[842px] text-zinc-900 font-sans">
-      <div className="mb-12">
-        <h1 className="text-5xl font-light tracking-tighter mb-2">{personal_info.fullName || 'YOUR NAME'}</h1>
-        <p className="text-zinc-500 tracking-widest uppercase text-xs font-semibold">{personal_info.profession || 'Profession'}</p>
-      </div>
+    <div className="bg-white shadow-lg w-[210mm] min-h-[297mm] p-16 mx-auto text-zinc-900 font-sans tracking-tight">
+      <header className="mb-20">
+        <h1 className="text-5xl font-light mb-2">{personal_info.fullName || 'Name'}</h1>
+        <p className="text-zinc-500 uppercase text-xs tracking-[0.2em]">{personal_info.profession}</p>
+      </header>
 
-      <div className="space-y-10">
-        <div className="grid grid-cols-4">
-          <div className="col-span-1 text-xs font-bold uppercase tracking-widest text-zinc-400">Contact</div>
-          <div className="col-span-3 text-sm space-y-1">
+      <div className="space-y-16">
+        <section className="grid grid-cols-4 gap-8">
+          <div className="text-zinc-400 text-xs uppercase tracking-widest pt-1">Contact</div>
+          <div className="col-span-3 space-y-1 text-sm">
             <p>{personal_info.email}</p>
             <p>{personal_info.phone}</p>
-            <p className="text-zinc-400">{personal_info.linkedin}</p>
+            <p>{personal_info.linkedin}</p>
           </div>
-        </div>
+        </section>
 
-        <div className="grid grid-cols-4">
-          <div className="col-span-1 text-xs font-bold uppercase tracking-widest text-zinc-400">Experience</div>
-          <div className="col-span-3 space-y-6">
-            {experience.map((exp, idx) => (
-              <div key={idx}>
-                <h3 className="text-sm font-bold">{exp.company}</h3>
-                <p className="text-xs text-zinc-500 mb-2">{exp.role} / {exp.duration}</p>
-                <p className="text-sm text-zinc-600 leading-relaxed">{exp.description}</p>
+        <section className="grid grid-cols-4 gap-8">
+          <div className="text-zinc-400 text-xs uppercase tracking-widest pt-1">Experience</div>
+          <div className="col-span-3 space-y-10">
+            {experience.map((exp, i) => (
+              <div key={i}>
+                <div className="flex justify-between items-baseline mb-2">
+                  <h3 className="font-bold text-base">{exp.company}</h3>
+                  <span className="text-zinc-400 text-xs">{exp.duration}</span>
+                </div>
+                <p className="text-zinc-600 mb-2">{exp.role}</p>
+                <p className="text-sm text-zinc-500 leading-relaxed">{exp.description}</p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        <div className="grid grid-cols-4">
-          <div className="col-span-1 text-xs font-bold uppercase tracking-widest text-zinc-400">Skills</div>
-          <div className="col-span-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
-            {skills.map((skill, idx) => (
-              <span key={idx}>{skill}</span>
+        <section className="grid grid-cols-4 gap-8">
+          <div className="text-zinc-400 text-xs uppercase tracking-widest pt-1">Skills</div>
+          <div className="col-span-3 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            {skills.map((skill, i) => (
+              <span key={i}>{skill}</span>
             ))}
           </div>
-        </div>
-
-        <div className="grid grid-cols-4">
-          <div className="col-span-1 text-xs font-bold uppercase tracking-widest text-zinc-400">Education</div>
-          <div className="col-span-3 space-y-4">
-            {education.map((edu, idx) => (
-              <div key={idx}>
-                <h3 className="text-sm font-bold">{edu.school}</h3>
-                <p className="text-xs text-zinc-500">{edu.degree} / {edu.year}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        </section>
       </div>
     </div>
   );

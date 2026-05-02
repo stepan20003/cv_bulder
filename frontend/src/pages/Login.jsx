@@ -4,8 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { FileText, Mail, Lock } from 'lucide-react';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
@@ -16,10 +15,10 @@ const Login = () => {
     setError('');
     setLoading(true);
     try {
-      await login(email, password);
+      await login(formData.email, formData.password);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to login');
+      setError(err.response?.data?.error || 'Invalid credentials');
     } finally {
       setLoading(false);
     }
@@ -48,8 +47,8 @@ const Login = () => {
                 <input
                   type="email"
                   required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="pl-10 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                   placeholder="you@example.com"
                 />
@@ -64,8 +63,8 @@ const Login = () => {
                 <input
                   type="password"
                   required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   className="pl-10 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                   placeholder="••••••••"
                 />
@@ -84,7 +83,7 @@ const Login = () => {
         <p className="text-center text-sm text-gray-600">
           Don't have an account?{' '}
           <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
-            Sign up
+            Sign up for free
           </Link>
         </p>
       </div>

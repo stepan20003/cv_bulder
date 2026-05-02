@@ -1,48 +1,51 @@
-import { X } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { X, Plus } from 'lucide-react';
 
-const SkillsForm = ({ data = [], onChange }) => {
+const SkillsForm = ({ data, onChange }) => {
   const [newSkill, setNewSkill] = useState('');
 
   const addSkill = (e) => {
-    if (e.key === 'Enter' && newSkill.trim()) {
-      e.preventDefault();
-      if (!data.includes(newSkill.trim())) {
-        onChange([...data, newSkill.trim()]);
-      }
+    e.preventDefault();
+    if (newSkill.trim() && !data.includes(newSkill.trim())) {
+      onChange([...data, newSkill.trim()]);
       setNewSkill('');
     }
   };
 
   const removeSkill = (skillToRemove) => {
-    onChange(data.filter(skill => skill !== skillToRemove));
+    onChange(data.filter((skill) => skill !== skillToRemove));
   };
 
   return (
-    <div className="space-y-4">
-      <h3 className="text-lg font-medium">Skills</h3>
-      <div>
+    <div className="space-y-6">
+      <form onSubmit={addSkill} className="flex space-x-2">
         <input
           type="text"
-          placeholder="Type a skill and press Enter"
           value={newSkill}
           onChange={(e) => setNewSkill(e.target.value)}
-          onKeyDown={addSkill}
-          className="w-full border border-gray-300 rounded p-2"
+          placeholder="Add a skill (e.g. React)"
+          className="flex-1 border border-gray-300 rounded-md shadow-sm p-2"
         />
-      </div>
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+        >
+          <Plus className="h-5 w-5" />
+        </button>
+      </form>
+
       <div className="flex flex-wrap gap-2">
         {data.map((skill, index) => (
           <span
             key={index}
-            className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm flex items-center"
+            className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium flex items-center space-x-2"
           >
-            {skill}
+            <span>{skill}</span>
             <button
               onClick={() => removeSkill(skill)}
-              className="ml-2 hover:text-blue-600"
+              className="text-blue-400 hover:text-blue-600"
             >
-              <X size={14} />
+              <X className="h-4 w-4" />
             </button>
           </span>
         ))}

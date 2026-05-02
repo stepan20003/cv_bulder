@@ -1,81 +1,103 @@
-# AI CV Builder
+# CVGenie - Professional CV Builder
 
-A professional full-stack CV generation application built with React, Node.js, and SQLite.
+CVGenie is a modern, full-stack web application designed for creating professional, ATS-friendly CVs and resumes. It features a real-time editor, multiple customizable templates, and instant PDF generation.
 
-## Features
+## 🚀 Features
 
-- 🔹 **Live Preview**: See your CV changes in real-time as you type.
-- 🔹 **Multiple Templates**: Choose between Modern, Classic, and Minimal designs.
-- 🔹 **Secure Auth**: User registration and login with JWT and password hashing.
-- 🔹 **CV Management**: Create, edit, and delete multiple CVs.
-- 🔹 **PDF Export**: Generate and download high-quality PDFs of your CV.
-- 🔹 **Responsive Design**: Works on mobile and desktop.
+-   **Live Preview**: See your CV update in real-time as you type.
+-   **Multiple Templates**: Choose from Modern, Classic, Minimal, and Creative styles.
+-   **Secure Authentication**: Personal dashboard to manage multiple CVs.
+-   **High-Quality PDF**: Backend PDF generation for perfectly formatted resumes.
+-   **Responsive Design**: Build your CV on desktop or mobile.
 
-## Tech Stack
+## 🛠 Tech Stack
 
-- **Frontend**: React, Tailwind CSS, Framer Motion, Lucide React, Axios.
-- **Backend**: Node.js, Express, SQLite, PDFKit, JWT, Bcrypt.
-- **Database**: SQLite (Easy to set up, no external server needed).
+-   **Frontend**: React, Tailwind CSS, Framer Motion, Lucide Icons.
+-   **Backend**: Node.js, Express, SQLite.
+-   **PDF Generation**: PDFKit.
+-   **Authentication**: JWT (JSON Web Tokens) with password hashing.
 
-## Local Setup
+## 🏁 Getting Started
 
-### 1. Clone the repository
+### Prerequisites
 
-### 2. Backend Setup
+-   Node.js (v18 or higher)
+-   npm or yarn
+
+### 1. Clone and Install Dependencies
+
 ```bash
+# Install backend dependencies
 cd backend
 npm install
+
+# Install frontend dependencies
+cd ../frontend
+npm install
 ```
-Create a `.env` file in the `backend` folder:
+
+### 2. Set Up Environment Variables
+
+Create a `.env` file in the `backend` directory:
+
 ```env
 PORT=5000
-JWT_SECRET=your_secret_key
+JWT_SECRET=your_super_secret_key_here
 ```
-Start the backend:
+
+### 3. Run Locally
+
+**Start the Backend:**
 ```bash
+cd backend
 npm start
 ```
 
-### 3. Frontend Setup
+**Start the Frontend:**
 ```bash
 cd frontend
-npm install
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173`.
+The application will be available at `http://localhost:5173`.
 
-## Deployment Instructions
+## 📦 Deployment Instructions
 
 ### Backend (Render / Railway)
-1. Push your code to GitHub.
-2. Connect your repository to Render or Railway.
-3. Set the build command to `npm install`.
-4. Set the start command to `node src/server.js`.
-5. Add environment variables (`PORT`, `JWT_SECRET`).
+1. Push the code to a GitHub repository.
+2. Connect your repository to **Render** or **Railway**.
+3. Set the build command: `cd backend && npm install`.
+4. Set the start command: `cd backend && node src/index.js`.
+5. Add your environment variables (`JWT_SECRET`).
 
 ### Frontend (Vercel / Netlify)
-1. Connect your repository to Vercel or Netlify.
-2. Set the build command to `npm run build`.
-3. Set the output directory to `dist`.
-4. Add environment variable `VITE_API_URL` pointing to your deployed backend.
+1. Connect your repository to **Vercel** or **Netlify**.
+2. Set the build command: `cd frontend && npm install && npm run build`.
+3. Set the output directory: `frontend/dist`.
+4. Ensure the `VITE_API_URL` in your frontend points to your deployed backend.
 
-## Project Structure
+## 📁 Project Structure
 
-```
+```text
 ├── backend/
 │   ├── src/
-│   │   ├── config/      # Database configuration
-│   │   ├── controllers/ # Request handlers
-│   │   ├── middleware/  # Auth middleware
-│   │   ├── routes/      # API endpoints
-│   │   ├── services/    # PDF generation service
-│   │   └── server.js    # Entry point
+│   │   ├── controllers/   # Route handlers
+│   │   ├── middleware/    # Auth and error middleware
+│   │   ├── models/        # SQLite database config
+│   │   ├── routes/        # API route definitions
+│   │   ├── services/      # PDF generation logic
+│   │   └── index.js       # Entry point
+│   └── package.json
 ├── frontend/
 │   ├── src/
-│   │   ├── components/  # Reusable UI components
-│   │   ├── context/     # Auth state management
-│   │   ├── pages/       # Page components (Dashboard, Editor, etc.)
-│   │   ├── services/    # API client
-│   │   └── templates/   # CV design templates
+│   │   ├── components/    # Reusable UI components
+│   │   ├── context/       # Auth state management
+│   │   ├── pages/         # Application pages
+│   │   ├── templates/     # CV layout designs
+│   │   └── App.jsx        # Routing
+│   └── package.json
+└── README.md
 ```
+
+## 📜 License
+MIT
